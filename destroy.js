@@ -1,7 +1,6 @@
 const {
   serializeMultisigScript,
   multisigArgs,
-  parseFromInfo,
 } = require("@ckb-lumos/common-scripts/lib/from_info");
 const { getConfig, initializeConfig } = require("@ckb-lumos/config-manager");
 const {
@@ -13,12 +12,7 @@ const {
 const { Indexer } = require("@ckb-lumos/indexer");
 const { common } = require("@ckb-lumos/common-scripts");
 const { key } = require("@ckb-lumos/hd");
-const fs = require("fs");
 const { RPC } = require("ckb-js-toolkit");
-const { generateTypeIDScript } = require("./typeid");
-const { serializeDepGroupData } = require("./dep_group");
-const TransactionManager = require("@ckb-lumos/transaction-manager");
-const { utils } = require("@ckb-lumos/base");
 
 process.env.LUMOS_CONFIG_FILE = __dirname + "/config.json";
 initializeConfig();
@@ -30,8 +24,8 @@ if (!multisigTemplate) {
 }
 
 const multisigScript = {
-  R: 3,
-  M: 5,
+  R: 0,
+  M: 3,
   publicKeyHashes: [
     "0x89cba48c68b3978f185df19f31634bb870e94639",
     "0x0ce445e32d7f91c9392485ddb9bc6885ce46ad64",
@@ -97,7 +91,7 @@ async function destroy() {
     txSkeleton,
     [multisigScript],
     fromAddress,
-    BigInt(1000 * 10 ** 8)
+    BigInt(61 * 10 ** 8)
   );
 
   txSkeleton = common.prepareSigningEntries(txSkeleton);
@@ -119,4 +113,4 @@ async function destroy() {
   console.log("txHash:", txHash);
 }
 
-destroy();
+// destroy();
