@@ -1,0 +1,14 @@
+{
+  "multisigScript": {
+    "R": 0,
+    "M": 3,
+    "publicKeyHashes": [
+      "0x89cba48c68b3978f185df19f31634bb870e94639",
+      "0x0ce445e32d7f91c9392485ddb9bc6885ce46ad64",
+      "0xc337da539e4d0b89daad1370b945f7210fad4c43",
+      "0xd9a188cc1985a7d4a31f141f4ebb61f241aec182",
+      "0xebf9befcd8396e88cab8fcb920ab149231658f4b"
+    ]
+  },
+  "fromPrivateKey": "0xe79f3207ea4980b7fed79956d5934249ceac4751a4fae01a0f7c4a96884bc4e3"
+}
