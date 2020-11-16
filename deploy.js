@@ -1,3 +1,7 @@
+// initialize lumos config
+const { init } = require("./init_config");
+init();
+
 const {
   serializeMultisigScript,
   multisigArgs,
@@ -20,52 +24,15 @@ const { serializeDepGroupData } = require("./dep_group");
 const TransactionManager = require("@ckb-lumos/transaction-manager");
 const { utils } = require("@ckb-lumos/base");
 
+const {
+  fromAddress,
+  multisigAddress,
+  fromPrivateKey,
+} = require("./multisig_helper");
+
 const data = fs.readFileSync("./build/anyone_can_pay");
 const acpData = "0x" + data.toString("hex");
 
-const configFilePath = __dirname + "/config.json";
-if (
-  process.env.LUMOS_CONFIG_NAME !== "LINA" &&
-  process.env.LUMOS_CONFIG_NAME !== "AGGRON4" &&
-  fs.existsSync(configFilePath)
-) {
-  process.env.LUMOS_CONFIG_FILE = configFilePath;
-}
-initializeConfig();
-
-const config = getConfig();
-const multisigTemplate = config.SCRIPTS.SECP256K1_BLAKE160_MULTISIG;
-if (!multisigTemplate) {
-  throw new Error("Multisig script template missing!");
-}
-
-const infos = require("./infos.json");
-const multisigScript = infos.multisigScript;
-
-// console.log("multisigScript:", multisigScript)
-
-const serializedMultisigScript = serializeMultisigScript(multisigScript);
-
-const args = multisigArgs(serializedMultisigScript);
-
-const multisigAddress = generateAddress({
-  code_hash: multisigTemplate.CODE_HASH,
-  hash_type: multisigTemplate.HASH_TYPE,
-  args,
-});
-
-// money from address
-const fromPrivateKey = infos.fromPrivateKey;
-const fromBlake160 = key.publicKeyToBlake160(
-  key.privateToPublic(fromPrivateKey)
-);
-
-const secpTemplate = getConfig().SCRIPTS.SECP256K1_BLAKE160;
-const fromAddress = generateAddress({
-  code_hash: secpTemplate.CODE_HASH,
-  hash_type: secpTemplate.HASH_TYPE,
-  args: fromBlake160,
-});
 console.log("Capacity fromAddress:", fromAddress);
 
 // indexer
@@ -144,11 +111,27 @@ async function main() {
   console.log("index:", "0x0");
   console.log("type id:", typeScriptHash);
 
+  const result = JSON.stringify(
+    {
+      tx_hash: txHash,
+      index: "0x0",
+      type_id: typeScriptHash,
+    },
+    null,
+    2
+  );
+  fs.writeFileSync("./deploy_result.json", result);
+
+  console.log("result already write to file `deploy_result.json`");
+
+  // TODO: disable dep group
   // dep group
-  await generateDepGroupTx({
-    tx_hash: txHash,
-    index: "0x0",
-  });
+  // await generateDepGroupTx({
+  //   tx_hash: txHash,
+  //   index: "0x0",
+  // });
+
+  process.exit(0);
 }
 main();
 

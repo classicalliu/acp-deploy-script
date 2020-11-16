@@ -3,3 +3,7 @@ indexer-data
 build
 infos.json
 config.json
+contents.json
+tx.json
+deploy_result.json
+deploy_updated_result.json

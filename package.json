@@ -11,6 +11,19 @@
     "@ckb-lumos/helpers": "^0.13.3",
     "@ckb-lumos/indexer": "^0.13.3",
     "@ckb-lumos/transaction-manager": "^0.13.3",
-    "ckb-js-toolkit": "^0.9.2"
+    "ckb-js-toolkit": "^0.9.2",
+    "immutable": "^4.0.0-rc.12"
+  },
+  "scripts": {
+    "wait_for_sync": "node sync.js",
+    "dev:deploy": "yarn run wait_for_sync && node deploy.js",
+    "aggron4:deploy": "yarn run wait_for_sync && LUMOS_CONFIG_NAME=AGGRON4 node deploy.js",
+    "lina:deploy": "yarn run wait_for_sync && LUMOS_CONFIG_NAME=LINA node deploy.js",
+    "dev:generate_update_tx": "yarn run wait_for_sync && node generate_update_tx.js",
+    "aggron4:generate_update_tx": "yarn run wait_for_sync && LUMOS_CONFIG_NAME=AGGRON4 node generate_update_tx.js",
+    "lina:generate_update_tx": "yarn run wait_for_sync && LUMOS_CONFIG_NAME=LINA node generate_update_tx.js",
+    "dev:deploy_updated": "yarn run wait_for_sync && node deploy_updated.js",
+    "arrgon4:deploy_updated": "yarn run wait_for_sync && LUMOS_CONFIG_NAME=AGGRON4 node deploy_updated.js",
+    "lina:deploy_updated": "yarn run wait_for_sync && LUMOS_CONFIG_NAME=LINA node deploy_updated.js"
   }
 }
