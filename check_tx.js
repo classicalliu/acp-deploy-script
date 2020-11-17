@@ -42,6 +42,7 @@ function main() {
   console.log(result);
 
   fs.writeFileSync("./check_tx_result.json", JSON.stringify(result, null, 2));
+  console.log("Result already write to `check_tx_result.json`")
 }
 main();
 
