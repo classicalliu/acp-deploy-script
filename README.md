@@ -60,7 +60,7 @@ yarn run lina:generate_update_tx
 
 ### deploy updated
 
-1. Make sure your `tx.json` and `contents.json` exits.
+1. Make sure your `tx.json` and `contents.json` exists.
 
 2. Run
 
@@ -72,6 +72,21 @@ yarn run aggron4:deploy_updated
 # mainnet
 yarn run lina:deploy_updated
 ```
+
+### Check transaction info
+
+If you want to know update transaction infos, such as destroy cell out_point, new cell data hash, and validate messages for signning.
+
+1. Make sure your `tx.json` exists.
+
+2. Run
+
+```bash
+yarn run check_tx
+```
+
+3. Result info will write to `check_tx_result.json`
+
 
 ## managing keys with ckb-cli
 

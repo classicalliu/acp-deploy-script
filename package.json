@@ -24,6 +24,7 @@
     "lina:generate_update_tx": "yarn run wait_for_sync && LUMOS_CONFIG_NAME=LINA node generate_update_tx.js",
     "dev:deploy_updated": "yarn run wait_for_sync && node deploy_updated.js",
     "aggron4:deploy_updated": "yarn run wait_for_sync && LUMOS_CONFIG_NAME=AGGRON4 node deploy_updated.js",
-    "lina:deploy_updated": "yarn run wait_for_sync && LUMOS_CONFIG_NAME=LINA node deploy_updated.js"
+    "lina:deploy_updated": "yarn run wait_for_sync && LUMOS_CONFIG_NAME=LINA node deploy_updated.js",
+    "check_tx": "node check_tx.js"
   }
 }
