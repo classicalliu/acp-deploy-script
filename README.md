@@ -87,6 +87,17 @@ yarn run check_tx
 
 3. Result info will write to `check_tx_result.json`
 
+### Generate dep group
+
+```bash
+# read from `deploy_result.json`
+yarn run generate_dep_group 0
+# read from `deploy_updated_result.json`
+yarn run generate_dep_group 1
+
+# result in `dep_group.json`
+```
+
 
 ## managing keys with ckb-cli
 
