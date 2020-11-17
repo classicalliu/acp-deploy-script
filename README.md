@@ -72,3 +72,25 @@ yarn run aggron4:deploy_updated
 # mainnet
 yarn run lina:deploy_updated
 ```
+
+## managing keys with ckb-cli
+
+To create a public key that can be used in the multi-signing phase, use the following command:
+
+```bash
+# ckb-cli account new
+Your new account is locked with a password. Please give a password. Do not forget this password.
+Password:
+Repeat password:
+address:
+  mainnet: ckb1qyqd5w98547g3p7djujhqgjkw83ctmme4ntqvf4wm9
+  testnet: ckt1qyqd5w98547g3p7djujhqgjkw83ctmme4ntq3vt3he
+lock_arg: 0xda38a7a57c8887cd972570225671e385ef79acd6
+lock_hash: 0x9e3c9e78047998fc26b3f105a6f74238dc31538f9a3cd9481c288e73226488af
+```
+
+To sign a message, use the following command:
+
+```bash
+ckb-cli util sign-message --recoverable --message 0x3e0b4968a7bd4d6676411120298990d0f625f5b97835587725237949e932a7a8 --from-account ckb1qyqd5w98547g3p7djujhqgjkw83ctmme4ntqvf4wm9
+```
