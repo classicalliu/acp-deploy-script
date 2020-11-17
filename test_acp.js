@@ -9,6 +9,7 @@ const {
 } = require("@ckb-lumos/helpers");
 const { Indexer } = require("@ckb-lumos/indexer");
 const { RPC } = require("ckb-js-toolkit");
+const { List } = require("immutable");
 
 process.env.LUMOS_CONFIG_FILE = __dirname + "/config.json";
 initializeConfig();
@@ -72,6 +73,8 @@ async function sendToAcp() {
 }
 
 async function payFromAcp() {
+  const deps = require("./dep_group.json");
+
   let txSkeleton = TransactionSkeleton({ cellProvider: indexer });
 
   const capacity = BigInt(100 * 10 ** 8);
@@ -82,6 +85,9 @@ async function payFromAcp() {
     fromAddress,
     capacity
   );
+  txSkeleton = txSkeleton.update("cellDeps", (cellDeps) => {
+    return List(deps);
+  });
 
   txSkeleton = common.prepareSigningEntries(txSkeleton);
 
