@@ -89,11 +89,8 @@ async function main() {
     return outputs.set(0, firstOutput);
   });
 
-  txSkeleton = await common.payFee(
-    txSkeleton,
-    [fromAddress],
-    BigInt(1 * 10 ** 8)
-  );
+  const feeRate = BigInt(1000);
+  txSkeleton = await common.payFeeByFeeRate(txSkeleton, [fromAddress], feeRate);
 
   txSkeleton = common.prepareSigningEntries(txSkeleton);
 
@@ -182,11 +179,8 @@ async function generateDepGroupTx(outPoint) {
     return outputs.set(0, firstOutput);
   });
 
-  txSkeleton = await common.payFee(
-    txSkeleton,
-    [fromAddress],
-    BigInt(1 * 10 ** 8)
-  );
+  const feeRate = BigInt(1000);
+  txSkeleton = await common.payFeeByFeeRate(txSkeleton, [fromAddress], feeRate);
 
   txSkeleton = common.prepareSigningEntries(txSkeleton);
 
