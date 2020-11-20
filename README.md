@@ -103,6 +103,24 @@ yarn run lina:deploy_dep_group 1
 # result in `dep_group.json`
 ```
 
+### Get lock script info from `infos.json`
+
+```bash
+yarn run dev:get_script_lock
+yarn run aggron4:get_script_lock
+yarn run lina:get_script_lock
+```
+
+example
+
+```bash
+--- lock script ---
+{
+  code_hash: '0x5c5069eb0857efc65e1bca0c07df34c31663b3622fd3876c876320fc9634e2a8',
+  hash_type: 'type',
+  args: '0xeab3f3af22975377458f3d310933b39c6dd887b5'
+}
+```
 
 ## managing keys with ckb-cli
 

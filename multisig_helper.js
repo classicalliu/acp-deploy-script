@@ -31,11 +31,13 @@ const multisigScript = infos.multisigScript;
 const serializedMultisigScript = serializeMultisigScript(multisigScript);
 const args = multisigArgs(serializedMultisigScript);
 
-const multisigAddress = generateAddress({
+const multisigLockScript = {
   code_hash: multisigTemplate.CODE_HASH,
   hash_type: multisigTemplate.HASH_TYPE,
   args,
-});
+};
+
+const multisigAddress = generateAddress(multisigLockScript);
 
 // money from address
 const fromPrivateKey = infos.fromPrivateKey;
@@ -53,6 +55,7 @@ const fromAddress = generateAddress({
 module.exports = {
   multisigScript,
   serializedMultisigScript,
+  multisigLockScript,
   multisigAddress,
   fromAddress,
   fromPrivateKey,
